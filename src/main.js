@@ -7,6 +7,7 @@ import fastClick from "fastclick";
 import "styles/reset.css";
 import "styles/border.css";
 import "styles/iconfont.css";
+import "styles/iconfont.js";
 
 Vue.config.productionTip = false;
 fastClick.attach(document.body);
