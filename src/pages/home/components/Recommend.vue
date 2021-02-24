@@ -2,11 +2,7 @@
   <div class="rec_main">
     <div class="rec_title">热门推荐</div>
     <ul>
-      <li
-        class="rec_item border-bottom"
-        v-for="item of Rec_List"
-        :key="item.id"
-      >
+      <li class="rec_item border-bottom" v-for="item of list" :key="item.id">
         <div class="item-img-wrapper">
           <img :src="item.imgUrl" alt="" class="item-img" />
         </div>
@@ -22,32 +18,11 @@
 <script>
 export default {
   name: "HomeRecommend",
+  props: {
+    list: Array
+  },
   data() {
-    return {
-      Rec_List: [
-        {
-          id: "001",
-          imgUrl:
-            "https://imgs.qunarzz.com/sight/p0/1702/db/dbc8f6cf051b3803a3.water.jpg_710x360_dd85998a.jpg",
-          title: "龙虎山",
-          desc: "神秘的古越族文明，体验绝美的自然风光"
-        },
-        {
-          id: "002",
-          imgUrl:
-            "https://imgs.qunarzz.com/sight/p0/1505/77/77179a76466805bc.water.jpg_710x360_052d1dca.jpg",
-          title: "武功山",
-          desc: "高山草甸，初见惊艳，再见依然！"
-        },
-        {
-          id: "003",
-          imgUrl:
-            "https://imgs.qunarzz.com/sight/p0/1802/e0/e0736ee4db571454a3.img.jpg_710x360_c288fe97.jpg",
-          title: "婺源风景区",
-          desc: "中国绝美乡村，开始你的文艺之旅"
-        }
-      ]
-    };
+    return {};
   }
 };
 </script>

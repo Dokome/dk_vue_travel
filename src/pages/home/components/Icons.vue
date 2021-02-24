@@ -1,12 +1,12 @@
 <template>
   <div>
-    <swiper>
+    <swiper :options="swiperOptions">
       <swiper-slide v-for="(page, index) of pages" :key="index" class="icons">
         <div v-for="item of page" :key="item.id" class="icon_box">
           <svg class="icon" aria-hidden="true">
             <use :xlink:href="item.content"></use>
           </svg>
-          <p class="icon_dsc">{{ item.dsc }}</p>
+          <p class="icon_dsc">{{ item.desc }}</p>
         </div>
       </swiper-slide>
     </swiper>
@@ -15,61 +15,21 @@
 <script>
 export default {
   name: "HomeIcons",
+  props: {
+    list: Array
+  },
   data() {
     return {
-      iconList: [
-        {
-          id: "0001",
-          dsc: "公交线路",
-          content: "#icontubiaozhizuomoban_bashi"
-        },
-        {
-          id: "0002",
-          dsc: "船只航行",
-          content: "#icontubiaozhizuomoban_dulun"
-        },
-        {
-          id: "0003",
-          dsc: "热门指南",
-          content: "#icontubiaozhizuomoban_fangxiang"
-        },
-        {
-          id: "0004",
-          dsc: "景点推荐",
-          content: "#icontubiaozhizuomoban_fengjing"
-        },
-        {
-          id: "0005",
-          dsc: "地铁出行",
-          content: "#icontubiaozhizuomoban_huoche"
-        },
-        {
-          id: "0006",
-          dsc: "酒店旅社",
-          content: "#icontubiaozhizuomoban_jiudian"
-        },
-        {
-          id: "0007",
-          dsc: "黄金海滩",
-          content: "#icontubiaozhizuomoban_shatan"
-        },
-        {
-          id: "0008",
-          dsc: "使用须知",
-          content: "#icontubiaozhizuomoban_zhinan"
-        },
-        {
-          id: "0008",
-          dsc: "使用须知使用须知使用须知使用须知",
-          content: "#icontubiaozhizuomoban_zhinan"
-        }
-      ]
+      swiperOptions: {
+        autoplay: false
+      }
     };
   },
   computed: {
     pages() {
+      console.log(this);
       const pages = [];
-      this.iconList.forEach((item, index) => {
+      this.list.forEach((item, index) => {
         const page = Math.floor(index / 8);
         if (!pages[page]) {
           pages[page] = [];
