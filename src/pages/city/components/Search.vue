@@ -7,12 +7,13 @@
         class="search_input"
         v-model="keyword"
       />
-      <div class="search-content" ref="search">
+      <div class="search-content" ref="search" v-show="content_show">
         <ul>
           <li
             v-for="(item, index) of list"
             :key="'search-' + index"
             class="search-item"
+            @click="handleCityClick(item.name)"
           >
             {{ item.name }}
           </li>
@@ -36,7 +37,8 @@ export default {
       keyword: "",
       list: [],
       timer: null,
-      showNone: false
+      showNone: false,
+      content_show: false
     };
   },
   updated() {
@@ -44,6 +46,7 @@ export default {
   },
   watch: {
     keyword() {
+      this.content_show = !this.content_show;
       if (this.timer) {
         clearTimeout(this.timer);
       }
@@ -76,6 +79,12 @@ export default {
   computed: {
     search_ifShow() {
       return !this.list.length && this.showNone;
+    }
+  },
+  methods: {
+    handleCityClick(name) {
+      this.$store.dispatch("changeCity", name);
+      this.$router.push("/");
     }
   }
 };
