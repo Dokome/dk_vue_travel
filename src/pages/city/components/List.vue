@@ -1,6 +1,6 @@
 <template>
   <div class="list" ref="wrapper">
-    <div>
+    <div class="content">
       <div class="area">
         <div class="title">当前城市</div>
         <div class="button-list">
@@ -17,7 +17,12 @@
           </div>
         </div>
       </div>
-      <div class="area" v-for="(AlphaList, name) in cities" :key="name">
+      <div
+        class="area"
+        v-for="(AlphaList, name) in cities"
+        :key="name"
+        :ref="name"
+      >
         <div class="title">{{ name }}</div>
         <div class="item-list" v-for="item in AlphaList" :key="item.id">
           <div class="item">{{ item.name }}</div>
@@ -27,27 +32,38 @@
   </div>
 </template>
 <script>
-// import BScroll from "better-scroll";
+import BScroll from "better-scroll";
 export default {
   name: "CityList",
   props: {
     cities: Object,
-    hotCities: Array
+    hotCities: Array,
+    letter: String
   },
   mounted() {
-    // this.scroll = new BScroll(this.$refs.wrapper);
-  }
+    setTimeout(() => {
+      this.scroll = new BScroll(this.$refs.wrapper);
+    }, 20);
+  },
+  watch: {
+    letter() {
+      if (this.letter) {
+        const element = this.$refs[this.letter][0];
+        this.scroll.scrollToElement(element);
+      }
+    }
+  },
+  methods: {}
 };
 </script>
 <style scoped lang="stylus">
 @import '~styles/varibles.styl'
 .list
+  height: 100vh;
   position: absolute
   top: 1.60rem
   left: 0
-  right:0
-  bottom: 0
-
+  overflow: hidden
 .title
   font-size .26rem
   height: .44rem
