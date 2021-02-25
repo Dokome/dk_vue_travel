@@ -14,6 +14,7 @@ export default {
 <style scoped lang="stylus">
 @import '~styles/varibles.styl'
 .header
+  text-indent: -.3rem
   height $headerHeigth
   line-height $headerHeigth
   font-size: .32rem
@@ -22,6 +23,7 @@ export default {
   background-color: $bgColor
   .back-icon
     color: #fff
+    text-indent: 0
     padding 0 .12rem
     font-size .4rem
     float: left
