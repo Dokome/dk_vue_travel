@@ -12,50 +12,30 @@
       <div class="area">
         <div class="title">热门城市</div>
         <div class="button-list">
-          <div class="buttonWrapper">
-            <div class="button">赣州</div>
+          <div class="buttonWrapper" v-for="item of hotCities" :key="item.id">
+            <div class="button">{{ item.name }}</div>
           </div>
         </div>
       </div>
-      <div class="area">
-        <div class="title">A</div>
-        <div class="item-list">
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title">A</div>
-        <div class="item-list">
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-        </div>
-      </div>
-      <div class="area">
-        <div class="title">A</div>
-        <div class="item-list">
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
-          <div class="item">阿拉尔</div>
+      <div class="area" v-for="(AlphaList, name) in cities" :key="name">
+        <div class="title">{{ name }}</div>
+        <div class="item-list" v-for="item in AlphaList" :key="item.id">
+          <div class="item">{{ item.name }}</div>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import BScroll from "better-scroll";
+// import BScroll from "better-scroll";
 export default {
   name: "CityList",
+  props: {
+    cities: Object,
+    hotCities: Array
+  },
   mounted() {
-    this.scroll = new BScroll(this.$refs.wrapper);
+    // this.scroll = new BScroll(this.$refs.wrapper);
   }
 };
 </script>
@@ -67,7 +47,7 @@ export default {
   left: 0
   right:0
   bottom: 0
-  overflow: hidden
+
 .title
   font-size .26rem
   height: .44rem
