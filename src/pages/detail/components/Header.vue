@@ -23,8 +23,12 @@ export default {
       scrollTimer: null
     };
   },
-  mounted() {
+  activated() {
     window.addEventListener("scroll", this.handleScroll);
+  },
+  deactivated() {
+    //全局事件解绑
+    window.removeEventListener("scroll");
   },
   methods: {
     handleScroll() {
