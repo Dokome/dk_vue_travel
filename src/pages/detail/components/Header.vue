@@ -1,16 +1,18 @@
 <template>
-  <div class="header">
-    <router-link class="header-abs" to="/">
-      <div class="iconfont abs-back-icon">&#xe685;</div>
-    </router-link>
-    <transition name="fade">
-      <div class="header-fixed" v-show="isScrollShow">
-        景点详情
-        <router-link tag="div" class="iconfont header-back-icon" to="/"
-          >&#xe685;</router-link
-        >
-      </div>
-    </transition>
+  <div>
+    <div class="header">
+      <router-link class="header-abs" to="/">
+        <div class="iconfont abs-back-icon">&#xe685;</div>
+      </router-link>
+      <transition name="fade">
+        <div class="header-fixed" v-show="isScrollShow">
+          景点详情
+          <router-link tag="div" class="iconfont header-back-icon" to="/"
+            >&#xe685;</router-link
+          >
+        </div>
+      </transition>
+    </div>
     <div class="content"></div>
   </div>
 </template>
@@ -28,7 +30,7 @@ export default {
   },
   deactivated() {
     //全局事件解绑
-    window.removeEventListener("scroll");
+    window.removeEventListener("scroll", this.handleScroll);
   },
   methods: {
     handleScroll() {
@@ -64,6 +66,7 @@ export default {
       color: #fff
       font-size .6rem
   .header-fixed
+    z-index: 99
     position: fixed
     left: 0
     right: 0;
@@ -81,8 +84,12 @@ export default {
       padding 0 .12rem
       font-size .4rem
       float: left
-  .content
-    height: 50rem
+.content
+  position: absolute
+  top: 0
+  left: 0
+  height: 50rem
+  z-index: 1
 .fade-enter-active,
 .fade-leave-active
   transition .3s
