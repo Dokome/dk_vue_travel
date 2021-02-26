@@ -1,14 +1,20 @@
 <template>
   <div>
-    <DetailBanner></DetailBanner>
+    <DetailBanner
+      :sightName="sightName"
+      :bannerImg="bannerImg"
+      :gallaryImgs="gallaryImgs"
+    ></DetailBanner>
     <DetailHeader></DetailHeader>
-    <DetailList :list="list"></DetailList>
+    <DetailList :list="categoryList"></DetailList>
   </div>
 </template>
 <script>
 import DetailBanner from "./components/Banner";
 import DetailHeader from "./components/Header";
 import DetailList from "./components/List";
+import axios from "axios";
+
 export default {
   name: "Detail",
   components: {
@@ -16,33 +22,38 @@ export default {
     DetailHeader,
     DetailList
   },
+  methods: {
+    getDetailInfo() {
+      axios
+        .get("/api/detail.json?id=", {
+          params: {
+            id: this.$route.params.id
+          }
+        })
+        .then(this.handleDetailSucc);
+    },
+    handleDetailSucc(res) {
+      res = res.data;
+      if (res.ret) {
+        const data = res.data;
+        console.log(data);
+        this.sightName = data.sightName;
+        this.bannerImg = data.bannerImg;
+        this.gallaryImgs = data.gallaryImgs;
+        this.categoryList = data.categoryList;
+      }
+    }
+  },
   data() {
     return {
-      list: [
-        {
-          title: "成人票",
-          children: [
-            {
-              title: "成人三馆联票",
-              children: [{ title: "三馆联票-连锁店特售" }]
-            },
-            {
-              title: "成人五馆联票",
-              children: [{ title: "五馆联票-连锁店特售" }]
-            }
-          ]
-        },
-        {
-          title: "学生票"
-        },
-        {
-          title: "儿童票"
-        },
-        {
-          title: "特惠票"
-        }
-      ]
+      sightName: "",
+      bannerImg: "",
+      gallaryImgs: [],
+      categoryList: []
     };
+  },
+  mounted() {
+    this.getDetailInfo();
   }
 };
 </script>

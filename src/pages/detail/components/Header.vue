@@ -1,19 +1,17 @@
 <template>
-  <div>
-    <div class="header">
-      <router-link class="header-abs" to="/">
-        <div class="iconfont abs-back-icon">&#xe685;</div>
-      </router-link>
-      <transition name="fade">
-        <div class="header-fixed" v-show="isScrollShow">
-          景点详情
-          <router-link tag="div" class="iconfont header-back-icon" to="/"
-            >&#xe685;</router-link
-          >
-        </div>
-      </transition>
-    </div>
-    <div class="content"></div>
+  <div class="header">
+    <router-link class="header-abs" to="/">
+      <div class="iconfont abs-back-icon">&#xe685;</div>
+    </router-link>
+    <transition name="fade">
+      <div class="header-fixed" v-show="isScrollShow">
+        景点详情
+        <router-link tag="div" class="iconfont header-back-icon" to="/"
+          >&#xe685;</router-link
+        >
+      </div>
+    </transition>
+    <!-- <div class="content"></div> -->
   </div>
 </template>
 <script>
@@ -52,6 +50,13 @@ export default {
 <style scoped lang="stylus">
 @import '~styles/varibles.styl'
 .header
+  .content
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    height: 50rem
   .header-abs
     width: .8rem
     height: .8rem
@@ -84,12 +89,7 @@ export default {
       padding 0 .12rem
       font-size .4rem
       float: left
-.content
-  position: absolute
-  top: 0
-  left: 0
-  height: 50rem
-  z-index: 1
+
 .fade-enter-active,
 .fade-leave-active
   transition .3s

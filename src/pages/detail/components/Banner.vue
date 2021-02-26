@@ -1,17 +1,14 @@
 <template>
   <div>
     <div class="banner" @click="handleShowGallary">
-      <img
-        src="https://imgs.qunarzz.com/sight/p0/1702/db/dbc8f6cf051b3803a3.water.jpg_710x360_dd85998a.jpg"
-        class="banner-img"
-      />
+      <img :src="bannerImg" class="banner-img" />
       <div class="banner-info">
-        <div class="banner-title">龙虎山5A景区</div>
+        <div class="banner-title">{{ this.sightName }}</div>
         <div class="banner-number">2</div>
       </div>
     </div>
     <CommonGallary
-      :imgs="imgs"
+      :imgs="gallaryImgs"
       v-show="showGallary"
       @close="handleGallaryClose"
     ></CommonGallary>
@@ -22,15 +19,11 @@ import CommonGallary from "common/gallary/Gallary";
 export default {
   data() {
     return {
-      showGallary: false,
-      imgs: [
-        "https://imgs.qunarzz.com/sight/p0/1702/db/dbc8f6cf051b3803a3.water.jpg_710x360_dd85998a.jpg",
-        "https://imgs.qunarzz.com/sight/p0/1702/52/525a9d80151da556a3.water.jpg_710x360_d50f8f10.jpg",
-        "https://imgs.qunarzz.com/sight/p0/1702/23/2356c0f6eb96a67da3.water.jpg_1190x550_bec7fc9e.jpg"
-      ]
+      showGallary: false
     };
   },
   name: "Banner",
+  props: ["bannerImg", "sightName", "gallaryImgs"],
   components: {
     CommonGallary
   },

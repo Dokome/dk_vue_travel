@@ -23,5 +23,8 @@ export default new Router({
       name: "detail",
       component: Detail
     }
-  ]
+  ],
+  scrollBehavior: function(to, from, savedPosition) {
+    return savedPosition || { x: 0, y: 0 };
+  }
 });
