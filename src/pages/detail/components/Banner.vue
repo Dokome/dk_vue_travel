@@ -7,15 +7,19 @@
         <div class="banner-number">2</div>
       </div>
     </div>
-    <CommonGallary
-      :imgs="gallaryImgs"
-      v-show="showGallary"
-      @close="handleGallaryClose"
-    ></CommonGallary>
+    <CommonFadeAnimation>
+      <CommonGallary
+        :imgs="gallaryImgs"
+        v-show="showGallary"
+        @close="handleGallaryClose"
+      ></CommonGallary>
+    </CommonFadeAnimation>
   </div>
 </template>
 <script>
 import CommonGallary from "common/gallary/Gallary";
+import CommonFadeAnimation from "common/fade/Fade";
+
 export default {
   data() {
     return {
@@ -25,7 +29,8 @@ export default {
   name: "Banner",
   props: ["bannerImg", "sightName", "gallaryImgs"],
   components: {
-    CommonGallary
+    CommonGallary,
+    CommonFadeAnimation
   },
   methods: {
     handleShowGallary() {
